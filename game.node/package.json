@@ -1,0 +1,26 @@
+{
+  "name": "game.node",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently --success first --raw --kill-others \"npm:game:love\" \"npm:game:node\"",
+    "game:love": "/usr/bin/env love ../game.love",
+    "game:node": "node ./index.js",
+    "dev": "npm start"
+  },
+  "keywords": [],
+  "author": "insanity54",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "tmi.js": "^1.8.5",
+    "ws": "^8.16.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "engineStrict": true
+}

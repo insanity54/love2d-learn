@@ -1,0 +1,27 @@
+{
+    "badge-info": {
+        "subscriber": "7"
+    },
+    "badges": {
+        "subscriber": "6"
+    },
+    "color": null,
+    "display-name": "comicjaguar29",
+    "emotes": null,
+    "first-msg": false,
+    "flags": null,
+    "id": "6d7a69f3-8934-44bf-b276-308b7c0e96c7",
+    "mod": false,
+    "returning-chatter": false,
+    "room-id": "465846646",
+    "subscriber": true,
+    "tmi-sent-ts": "1708091564289",
+    "turbo": false,
+    "user-id": "671647449",
+    "user-type": null,
+    "emotes-raw": null,
+    "badge-info-raw": "subscriber/7",
+    "badges-raw": "subscriber/6",
+    "username": "comicjaguar29",
+    "message-type": "chat"
+}
