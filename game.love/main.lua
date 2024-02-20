@@ -2,7 +2,7 @@ local love = require "love"
 local utf8 = require "utf8"
 SM = require "lib.SceneMgr"
 local baton = require 'lib.baton'
--- local websocket = require "lib.websocket"
+local websocket = require "lib.websocket"
 local ProjectilesLib = require "lib.Projectiles"
 
 
@@ -18,11 +18,11 @@ local config = {
 }
 
 -- vars
-Channel = "xqc"
+Channel = "marimari_en"
 Player = baton.new(config)
 
 -- script
--- Client = websocket.new("127.0.0.1", 5211)
+Client = websocket.new("127.0.0.1", 5211)
 Projectiles = ProjectilesLib()
 
 local function parseMessage(message)
@@ -35,40 +35,40 @@ local function parseMessage(message)
     return args
 end
 
--- function Client:onmessage(message)
---     -- print("[game.love] we got a message="..message)
---     local parsedArgs = parseMessage(message)
---     local command = parsedArgs[1]
---     local target = parsedArgs[2]
---     local shooterName = parsedArgs[3]
---     local cRaw = parsedArgs[4]
---     local color
---     if cRaw == "null" then
---         color = "#FFFFFF"
---     else
---         color = cRaw
---     end
+function Client:onmessage(message)
+    -- print("[game.love] we got a message="..message)
+    local parsedArgs = parseMessage(message)
+    local command = parsedArgs[1]
+    local target = parsedArgs[2]
+    local shooterName = parsedArgs[3]
+    local cRaw = parsedArgs[4]
+    local color
+    if cRaw == "null" then
+        color = "#FFFFFF"
+    else
+        color = cRaw
+    end
 
---     -- print("command="..command.." target="..target.." shooterName="..shooterName.." color="..color)
+    -- print("command="..command.." target="..target.." shooterName="..shooterName.." color="..color)
 
---     if parsedArgs[1] == 'shoot' then
---         Projectiles.shoot(
---             Projectiles,
---             target,
---             shooterName,
---             color
---         )
---     end
--- end
+    if parsedArgs[1] == 'shoot' then
+        Projectiles.shoot(
+            Projectiles,
+            target,
+            shooterName,
+            color
+        )
+    end
+end
 
--- function Client:onopen()
---     print("[game.love] ws client opened.")
---     self:send("hello from love2d")
--- end
+function Client:onopen()
+    print("[game.love] ws client opened.")
+    self:send("hello from love2d")
+end
 
--- function Client:onclose(code, reason)
---     print("[game.love] closecode: "..code..", reason: "..reason)
--- end
+function Client:onclose(code, reason)
+    print("[game.love] closecode: "..code..", reason: "..reason)
+end
 
 function love.keypressed(key)
     if key == "backspace" and SM.cName == "menu" then
@@ -84,17 +84,17 @@ function love.keypressed(key)
     end
 
     if key == "return" and SM.cName == "game" then
-        -- print("[game.love] return was pressed.")
+        print("[game.love] return was pressed. (Nothing in-game happens)")
         -- Client:send("test")
 
-        for i=1,64 do
-            Projectiles.shoot(
-                Projectiles,
-                3,
-                "taco man",
-                "#00FFCC"
-            )
-        end
+        -- for i=1,64 do
+        --     Projectiles.shoot(
+        --         Projectiles,
+        --         3,
+        --         "test man",
+        --         "#00FFCC"
+        --     )
+        -- end
 
     end
 
@@ -134,7 +134,7 @@ end
 function love.update(dt)
     -- Run your scene files update function
     SM.update(dt)
-    -- Client:update()
+    Client:update()
 end
 
 function love.draw()

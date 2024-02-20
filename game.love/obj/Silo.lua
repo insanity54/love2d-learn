@@ -24,7 +24,7 @@ function Silo(x, y, height, stock)
                 tx,
                 ty,
                 30,
-                1,
+                100, -- level
                 false
             ))
         end,

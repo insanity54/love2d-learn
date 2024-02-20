@@ -7,6 +7,7 @@ function Projectiles()
         missiles = {},
         explosions = {},
         update = function(self, dt)
+            -- detect if a missile's fuse has timed out
             for index, missile in pairs(self.missiles) do
                 missile.update(missile, dt)
 
@@ -16,9 +17,19 @@ function Projectiles()
                 end
 
             end
+            -- detect if an explosion has timed out
             for index, e in pairs(self.explosions) do
                 if (e.update(e, dt)) then
                     table.remove(self.explosions, index)
+                end
+            end
+            -- detect if an explosion is touching a missile
+            for _, e in pairs(Projectiles.explosions) do
+                for mIndex, m in pairs(Projectiles.missiles) do
+                    if _G.areTouching(e, m) then
+                        table.insert(self.explosions, explosion(m.x, m.y))
+                        table.remove(self.missiles, mIndex)
+                    end
                 end
             end
         end,
@@ -36,10 +47,17 @@ function Projectiles()
         -- this shoot is only for chatters.
         -- if the player is shooting, call SiloGroup.shoot() instead
         shoot = function (self, targetName, shooterName, shooterColor)
+
+            -- get the x, y of a random city
+            local randomCity = Cities.cities[math.random(#Cities.cities)]
+            if not randomCity then
+                return
+            end
+
             local x = math.random() * love.graphics.getWidth()
             local y = 0
-            local tx = 200
-            local ty = 200
+            local tx = randomCity.x
+            local ty = randomCity.y
             local r, g, b = _G.hexToRgb(shooterColor)
 
             -- print("chat shooterColor="..shooterColor.." shoot r="..color[1].." g="..color[2].." b="..color[3])

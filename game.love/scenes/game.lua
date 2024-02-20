@@ -2,11 +2,7 @@ local love = require("love")
 local scene = {}
 
 
-local rotation = 10
-local timer = 0
-local interval = 1
 
-local missile = require "obj.Missile"
 local siloGroup = require "obj.SiloGroup"
 local cityGroup = require "obj.CityGroup"
 local debugThing = require "obj.Debug"
@@ -17,7 +13,7 @@ Cities = cityGroup()
 
 function scene.load()
     print("[game.love] Channel="..Channel)
-    -- Client:send("join "..Channel)
+    Client:send("join "..Channel)
     -- TestMissile = Missile(350, 350, 500, 500, 30, 1, true)
 
     silos.spawn(silos)

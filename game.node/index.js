@@ -2,7 +2,7 @@ import WebSocket, { WebSocketServer } from 'ws';
 import tmi from 'tmi.js';
 
 let chat;
-const CONNECT_TO_TWITCH = false
+const CONNECT_TO_TWITCH = true
 const DEBUG = false
 
 const wss = new WebSocketServer({

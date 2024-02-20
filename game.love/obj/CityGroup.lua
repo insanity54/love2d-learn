@@ -12,16 +12,17 @@ function CityGroup()
         cities = {},
 
         update = function (self, dt)
-            -- for cIndex, c in pairs(self.cities) do
-            --     for eIndex, e in pairs(Projectiles.explosions) do
-            --         if _G.areTouching(e, c) then
-            --             c.hp = c.hp - 1
-            --             if c.hp < 1 then
-            --                 table.remove(self.cities, cIndex)
-            --             end
-            --         end
-            --     end
-            -- end
+            -- detect if an explosion is touching a city
+            for cIndex, c in pairs(self.cities) do
+                for _, e in pairs(Projectiles.explosions) do
+                    if _G.areTouching(e, c) then
+                        c.hp = c.hp - 1
+                        if c.hp < 1 then
+                            table.remove(self.cities, cIndex)
+                        end
+                    end
+                end
+            end
         end,
 
         draw = function (self)

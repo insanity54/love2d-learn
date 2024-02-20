@@ -30,5 +30,5 @@ function _G.lerp(a,b,t) return a + (b - a) * t end
 _G.buildingPattern = "010010010"
 _G.font = love.graphics.newFont(20)
 _G.labelFont = love.graphics.newFont(12)
-_G.MISSILE_BASE_SPEED = 250
+_G.MISSILE_BASE_SPEED = 50
 _G.DEBUG = true

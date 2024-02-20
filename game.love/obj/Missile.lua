@@ -50,16 +50,18 @@ function Missile(team, x, y, tx, ty, size, level, name, r, g, b)
         y_velocity = math.random() * missileSpeed * velocity,
         direction_x = direction_x, -- Store the direction
         direction_y = direction_y,
-        radius = 16,
+        collisionRadius = 16,
         fuseDuration = timeToTarget,
         remainingTime = timeToTarget,
         startTime = love.timer.getTime(),
         update = function(self, dt)
             -- Move the missile towards the target at constant speed
 
-            local lerpAmount = missileSpeed * dt / distanceToTarget
-            self.x = _G.lerp(self.x, self.tx, lerpAmount)
-            self.y = _G.lerp(self.y, self.ty, lerpAmount)
+            -- local lerpAmount = missileSpeed * dt / distanceToTarget -- this shit is faulty. missile doesn't reach target (pre-mature explosion)
+            -- self.x = _G.lerp(self.x, self.tx, lerpAmount)           -- this shit is faulty. missile doesn't reach target (pre-mature explosion)
+            -- self.y = _G.lerp(self.y, self.ty, lerpAmount)           -- this shit is faulty. missile doesn't reach target (pre-mature explosion)
+            self.x = self.x + self.direction_x * missileSpeed * dt
+            self.y = self.y + self.direction_y * missileSpeed * dt
 
             self.remainingTime = self.remainingTime - dt
             -- print("missile.startTime="..self.startTime.." missile.fuseDuration="..self.fuseDuration.." missile flight time="..self.remainingTime)
@@ -69,7 +71,7 @@ function Missile(team, x, y, tx, ty, size, level, name, r, g, b)
             -- love.graphics.setColor() -- @todo match with player color
             if _G.DEBUG then
                 love.graphics.setColor(0, 1, 0)
-                love.graphics.circle("line", self.x, self.y, self.radius)
+                love.graphics.circle("line", self.x, self.y, self.collisionRadius)
                 -- love.graphics.circle("fill", self.x, self.y, 4, 4)
             end
             love.graphics.setColor(r, g, b)
