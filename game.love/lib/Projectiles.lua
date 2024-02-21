@@ -13,14 +13,14 @@ function Projectiles()
 
                 if (missile.remainingTime < 0) then
                     table.insert(self.explosions, explosion(missile.x, missile.y))
-                    table.remove(self.missiles, index)
+                    self.missiles[index] = nil -- use this instead of table.remove which causes performance issues
                 end
 
             end
             -- detect if an explosion has timed out
             for index, e in pairs(self.explosions) do
                 if (e.update(e, dt)) then
-                    table.remove(self.explosions, index)
+                    self.explosions[index] = nil
                 end
             end
             -- detect if an explosion is touching a missile
@@ -28,7 +28,7 @@ function Projectiles()
                 for mIndex, m in pairs(Projectiles.missiles) do
                     if _G.areTouching(e, m) then
                         table.insert(self.explosions, explosion(m.x, m.y))
-                        table.remove(self.missiles, mIndex)
+                        self.missiles[mIndex] = nil
                     end
                 end
             end

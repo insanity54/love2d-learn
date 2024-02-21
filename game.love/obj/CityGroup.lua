@@ -18,7 +18,7 @@ function CityGroup()
                     if _G.areTouching(e, c) then
                         c.hp = c.hp - 1
                         if c.hp < 1 then
-                            table.remove(self.cities, cIndex)
+                            self.cities[cIndex] = nil
                         end
                     end
                 end

@@ -19,6 +19,7 @@ Chat Saves The World
 Chat Ends The World
 Don't Let Chat Win
 Chat Must Be Stopped
+**Chat Invaders**
 
 
 ## Open Source Acknowledgements
@@ -26,3 +27,8 @@ Chat Must Be Stopped
 [love2d-lua-websocket by flaribbit](https://github.com/flaribbit/love2d-lua-websocket)
 
 [SceneMgr by V3X3D](https://gitlab.com/V3X3D/love-libs/-/tree/master/SceneMgr)
+
+
+## Dev log
+
+2024-02-20 Added missile collisons, got some feedback from Mindsforge. (phalanx cannon, BRRR) Learned table.remove() is not performant. Suspect performance degredations from my collision detection method. Refactored to ECS, made basic C-RAM example
