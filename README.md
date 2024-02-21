@@ -28,6 +28,7 @@
 
 [SceneMgr by V3X3D](https://gitlab.com/V3X3D/love-libs/-/tree/master/SceneMgr)
 
+[Concord](https://github.com/Keyslam-Group/Concord)
 
 ## Dev log
 
